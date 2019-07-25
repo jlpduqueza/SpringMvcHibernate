@@ -16,7 +16,8 @@
 	http://www.springframework.org/schema/tx/spring-tx.xsd">
   
    <context:component-scan base-package = "com.example" />
-
+   <context:property-placeholder location="/WEB-INF/properties"/>
+   
    <bean class = "org.springframework.web.servlet.view.InternalResourceViewResolver">
       <property name = "prefix" value = "/WEB-INF/jsp/" />
       <property name = "suffix" value = ".jsp" />
@@ -24,9 +25,9 @@
 
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
-		<property name="url" value="jdbc:mysql://localhost:3306/shopping_app" />
-		<property name="username" value="root" />
-		<property name="password" value="" />
+		<property name="url" value="${db.url}" />
+		<property name="username" value="${db.username}" />
+		<property name="password" value="${db.password}" />
 	</bean>
 
 <!-- Hibernate 3 Annotation SessionFactory Bean definition-->
