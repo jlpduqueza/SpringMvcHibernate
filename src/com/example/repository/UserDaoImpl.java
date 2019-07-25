@@ -4,9 +4,11 @@ import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.example.domain.Login;
 import com.example.domain.User;
 
 @Repository
@@ -39,7 +41,20 @@ public class UserDaoImpl implements UserDao {
         Session session = sessionFactory.getCurrentSession();
         User user = session.byId(User.class).load(id);
         session.delete(user);
-		
 	}
 
+	@Override
+	@SuppressWarnings("rawtypes")
+	public Boolean isValidUser(Login login) {
+		Session currentSession = sessionFactory.getCurrentSession();
+		Query query = currentSession.createQuery("FROM User where username = :u AND password = :p");
+		query.setParameter("u", login.getUsername());
+		query.setParameter("p", login.getPassword());
+		
+		if(query.uniqueResult() == null) {
+			return false;
+		}
+		
+		return true;
+	}
 }

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.example.domain.Login;
 import com.example.domain.User;
 import com.example.repository.UserDao;
 
@@ -26,7 +27,6 @@ public class UserServiceImpl implements UserService {
     @Transactional
 	public void saveUser(User user) {
 		userDao.saveUser(user);
-		
 	}
 
 	@Override
@@ -39,6 +39,12 @@ public class UserServiceImpl implements UserService {
     @Transactional
 	public void deleteUser(int id) {
 		userDao.deleteUser(id);
+	}
+
+	@Override
+	@Transactional
+	public Boolean isValidUser(Login login) {
+		return userDao.isValidUser(login);
 	}
 
 }
