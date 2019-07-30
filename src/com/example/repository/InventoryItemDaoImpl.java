@@ -16,28 +16,28 @@ public class InventoryItemDaoImpl implements InventoryItemDao {
     private SessionFactory sessionFactory;
     
 	@Override
-	public List<InventoryItem> getInventoryItem() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<InventoryItem> getInventoryList() {
+		Session currentSession = sessionFactory.getCurrentSession();
+		return currentSession.createQuery("from InventoryItem", InventoryItem.class).getResultList();
 	}
 
 	@Override
 	public void saveInventoryItem(InventoryItem inventoryItem) {
         Session currentSession = sessionFactory.getCurrentSession();
         currentSession.saveOrUpdate(inventoryItem);
-		
 	}
 
 	@Override
 	public InventoryItem getInventoryItem(int id) {
-		// TODO Auto-generated method stub
-		return null;
+        Session currentSession = sessionFactory.getCurrentSession();
+        return currentSession.get(InventoryItem.class, id);
 	}
 
 	@Override
 	public void deleteInventoryItem(int id) {
-		// TODO Auto-generated method stub
-		
+        Session session = sessionFactory.getCurrentSession();
+        InventoryItem inventoryItem = session.byId(InventoryItem.class).load(id);
+        session.delete(inventoryItem);
 	}
 
 }

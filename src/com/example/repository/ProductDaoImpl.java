@@ -16,28 +16,28 @@ public class ProductDaoImpl implements ProductDao{
     private SessionFactory sessionFactory;
 	
 	@Override
-	public List<Product> getProduct() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Product> getProductList() {
+		Session currentSession = sessionFactory.getCurrentSession();
+		return currentSession.createQuery("from Product", Product.class).getResultList();
 	}
 
 	@Override
 	public void saveProduct(Product product) {
         Session currentSession = sessionFactory.getCurrentSession();
         currentSession.saveOrUpdate(product);
-		
 	}
 
 	@Override
 	public Product getProduct(int id) {
-		// TODO Auto-generated method stub
-		return null;
+        Session currentSession = sessionFactory.getCurrentSession();
+        return currentSession.get(Product.class, id);
 	}
 
 	@Override
 	public void deleteProduct(int id) {
-		// TODO Auto-generated method stub
-		
+        Session session = sessionFactory.getCurrentSession();
+        Product product = session.byId(Product.class).load(id);
+        session.delete(product);
 	}
 
 }

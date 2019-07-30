@@ -16,28 +16,27 @@ public class InventoryItemServiceImpl implements InventoryItemService {
     private InventoryItemDao inventoryItemDao;
 	
 	@Override
-	public List<InventoryItem> getInventoryItem() {
-		// TODO Auto-generated method stub
-		return null;
+	@Transactional
+	public List<InventoryItem> getInventoryList() {
+		return inventoryItemDao.getInventoryList();
 	}
 
 	@Override
     @Transactional
 	public void saveInventoryItem(InventoryItem inventoryItem) {
 		inventoryItemDao.saveInventoryItem(inventoryItem);
-		
 	}
 
 	@Override
+	@Transactional
 	public InventoryItem getInventoryItem(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		return inventoryItemDao.getInventoryItem(id);
 	}
 
 	@Override
+	@Transactional
 	public void deleteInventoryItem(int id) {
-		// TODO Auto-generated method stub
-		
+		inventoryItemDao.deleteInventoryItem(id);
 	}
 	
 }

@@ -22,12 +22,9 @@ public class UserDaoImpl implements UserDao {
 	}
     
 	@Override
-	@SuppressWarnings("unchecked")
 	public List<User> getUsers() {
 		Session currentSession = sessionFactory.getCurrentSession();
-		List<User> userList = currentSession.createQuery("from User", User.class).getResultList();
-		System.out.println(userList);
-		return userList;
+		return currentSession.createQuery("from User", User.class).getResultList();
 	}
 
 	@Override
@@ -39,8 +36,7 @@ public class UserDaoImpl implements UserDao {
 	@Override
 	public User getUser(int id) {
         Session currentSession = sessionFactory.getCurrentSession();
-        User user = currentSession.get(User.class, id);
-        return user;
+        return currentSession.get(User.class, id);
 	}
 
 	@Override
@@ -51,17 +47,22 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	@Override
-	@SuppressWarnings("rawtypes")
 	public Boolean isValidUser(Login login) {
-		Session currentSession = sessionFactory.getCurrentSession();
-		Query query = currentSession.createQuery("FROM User where username = :u AND password = :p");
-		query.setParameter("u", login.getUsername());
-		query.setParameter("p", login.getPassword());
 		
-		if(query.uniqueResult() == null) {
+		if(findUserByLogin(login) == null) {
 			return false;
 		}
 		
 		return true;
+	}
+
+	@Override
+	@SuppressWarnings("rawtypes")
+	public User findUserByLogin(Login login) {
+		Session currentSession = sessionFactory.getCurrentSession();
+		Query query = currentSession.createQuery("FROM User where username = :u AND password = :p");
+		query.setParameter("u", login.getUsername());
+		query.setParameter("p", login.getPassword());
+		return (User) query.uniqueResult();
 	}
 }

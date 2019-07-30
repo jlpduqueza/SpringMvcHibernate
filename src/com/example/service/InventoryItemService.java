@@ -6,7 +6,7 @@ import com.example.domain.InventoryItem;
 
 public interface InventoryItemService {
 	
-    public List <InventoryItem> getInventoryItem();
+    public List <InventoryItem> getInventoryList();
     public void saveInventoryItem(InventoryItem inventoryItem);
     public InventoryItem getInventoryItem(int id);
     public void deleteInventoryItem(int id);

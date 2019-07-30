@@ -16,28 +16,24 @@ public class ProductServiceImpl implements ProductService {
     private ProductDao productDao;
 	
 	@Override
-	public List<Product> getProduct() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Product> getProductList() {
+		return productDao.getProductList();
 	}
 
 	@Override
     @Transactional
 	public void saveProduct(Product product) {
 		productDao.saveProduct(product);
-		
 	}
 
 	@Override
 	public Product getProduct(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		return productDao.getProduct(id);
 	}
 
 	@Override
 	public void deleteProduct(int id) {
-		// TODO Auto-generated method stub
-		
+		productDao.deleteProduct(id);
 	}
 
 }

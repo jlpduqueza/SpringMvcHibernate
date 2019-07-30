@@ -55,6 +55,4 @@ public class CartItem {
 	public void setSubTotalPrice(BigDecimal subTotalPrice) {
 		this.subTotalPrice = subTotalPrice;
 	}
-	
-	
 }

@@ -46,4 +46,10 @@ public class UserServiceImpl implements UserService {
 		return userDao.isValidUser(login);
 	}
 
+	@Override
+	@Transactional
+	public User findUserByLogin(Login login) {
+		return userDao.findUserByLogin(login);
+	}
+
 }

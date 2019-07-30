@@ -12,5 +12,6 @@ public interface UserService {
 	public User getUser(int id);
 	public void deleteUser(int id);
 	public Boolean isValidUser(Login login);
+	public User findUserByLogin(Login login);
 	
 }

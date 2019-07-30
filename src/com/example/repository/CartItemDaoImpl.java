@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.example.domain.CartItem;
+import com.example.domain.User;
 
 @Repository
 public class CartItemDaoImpl implements CartItemDao {
@@ -16,28 +17,28 @@ public class CartItemDaoImpl implements CartItemDao {
     private SessionFactory sessionFactory;
     
 	@Override
-	public List<CartItem> getCartItem() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<CartItem> getCartItemList(User user) {
+		Session currentSession = sessionFactory.getCurrentSession();
+		return currentSession.createQuery("from CartItem", CartItem.class).getResultList();
 	}
 
 	@Override
 	public void saveCartItem(CartItem cartItem) {
         Session currentSession = sessionFactory.getCurrentSession();
         currentSession.saveOrUpdate(cartItem);
-		
 	}
 
 	@Override
 	public CartItem getCartItem(int id) {
-		// TODO Auto-generated method stub
-		return null;
+        Session currentSession = sessionFactory.getCurrentSession();
+        return currentSession.get(CartItem.class, id);
 	}
 
 	@Override
 	public void deleteCartItem(int id) {
-		// TODO Auto-generated method stub
-		
+        Session session = sessionFactory.getCurrentSession();
+        CartItem cartItem = session.byId(CartItem.class).load(id);
+        session.delete(cartItem);
 	}
 
 }

@@ -15,7 +15,7 @@ import com.example.service.UserService;
 public class UserController {
     @Autowired
     private UserService userService;
-
+    
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String loginForm(ModelMap model) {
         model.put("login", new Login());
@@ -29,10 +29,11 @@ public class UserController {
     }
     
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public String userValidation(Login login, ModelMap model) {
+    public String userValidation(Login login, ModelMap model, HttpSession session) {
         if (!userService.isValidUser(login)) {
             return "redirect:/";
         }
-        return "home";
+        session.setAttribute("user", userService.findUserByLogin(login));
+        return "forward:/home";
     }
 }
