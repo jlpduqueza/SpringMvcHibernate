@@ -1,0 +1,22 @@
+//		User user = new User();
+//		user.setUsername("test1");
+//		user.setRoleType("testUser");
+//		user.setPassword("test1");
+//		userService.saveUser(user);
+//		
+//		Product product = new Product();
+//		product.setName("Huawei Nova 3i");
+//		product.setPrice(new BigDecimal("12000"));
+//		productService.saveProduct(product);
+//		
+//		InventoryItem inventoryItem = new InventoryItem();
+//		inventoryItem.setProduct(product);
+//		inventoryItem.setQuantity(12);
+//		inventoryItemService.saveInventoryItem(inventoryItem);
+//		
+//		CartItem cartItem = new CartItem();
+//		cartItem.setQuantity(1);
+//		cartItem.setSubTotalPrice(new BigDecimal("12000"));
+//		cartItem.setProduct(product);
+//		cartItem.setUser(user);
+//		cartItemService.saveCartItem(cartItem);

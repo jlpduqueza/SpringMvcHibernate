@@ -17,10 +17,17 @@ public class UserDaoImpl implements UserDao {
     @Autowired
     private SessionFactory sessionFactory;
 	
+    public UserDaoImpl(SessionFactory sessionFactory) {
+		this.sessionFactory = sessionFactory;
+	}
+    
 	@Override
+	@SuppressWarnings("unchecked")
 	public List<User> getUsers() {
-		// TODO Auto-generated method stub
-		return null;
+		Session currentSession = sessionFactory.getCurrentSession();
+		List<User> userList = currentSession.createQuery("from User", User.class).getResultList();
+		System.out.println(userList);
+		return userList;
 	}
 
 	@Override

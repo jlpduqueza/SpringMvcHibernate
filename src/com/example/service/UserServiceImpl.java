@@ -19,8 +19,7 @@ public class UserServiceImpl implements UserService {
 	@Override
     @Transactional
 	public List<User> getUsers() {
-		// TODO Auto-generated method stub
-		return null;
+		return userDao.getUsers();
 	}
 
 	@Override

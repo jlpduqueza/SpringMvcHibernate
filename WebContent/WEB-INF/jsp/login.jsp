@@ -20,7 +20,6 @@
 				<br>
 				<form:button id="login" name="login">Login</form:button>
 				<br>
-				<a href="home.jsp">Home</a>
 
             </form:form>
    </body>
