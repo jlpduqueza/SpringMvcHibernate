@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -39,6 +40,15 @@ public class CartItemDaoImpl implements CartItemDao {
         Session session = sessionFactory.getCurrentSession();
         CartItem cartItem = session.byId(CartItem.class).load(id);
         session.delete(cartItem);
+	}
+	
+	@Override
+	@SuppressWarnings("rawtypes")
+	public void checkout(User user) {
+        Session session = sessionFactory.getCurrentSession();
+        Query query = session.createQuery("delete from CartItem where user_id = :userId");
+        query.setParameter("userId", user.getId());
+        query.executeUpdate();
 	}
 
 }

@@ -32,6 +32,12 @@ public class InventoryItemServiceImpl implements InventoryItemService {
 	public InventoryItem getInventoryItem(int id) {
 		return inventoryItemDao.getInventoryItem(id);
 	}
+	
+	@Override
+	@Transactional
+	public InventoryItem getInventoryItemByProductId(int id) {
+		return inventoryItemDao.getInventoryItemByProductId(id);
+	}
 
 	@Override
 	@Transactional

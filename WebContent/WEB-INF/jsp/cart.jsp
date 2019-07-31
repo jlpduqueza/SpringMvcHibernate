@@ -14,7 +14,7 @@
             <th>Price</th>
             <th>Quantity</th>
             <th>Action</th>
-            <c:forEach var="cartItem" items="${cartItemList}">
+         <c:forEach var="cartItem" items="${cartItemList}">
          <tr>
          <td>
          <c:out value = "${cartItem.product.name}"/>
@@ -28,8 +28,8 @@
          <c:out value = "${cartItem.quantity}"/>
          </td>
          <td>	
-         <a href="delete-cart-item?cartItemId=${cartItem.id}">Delete</a> 
-         <a href="edit-quantity?cartItemId=${cartItem.id}">Edit</a> 
+         <a href="/example/user/delete-cart-item?cartItemId=${cartItem.id}">Delete</a> 
+         <a href="/example/user/edit-quantity?cartItemId=${cartItem.id}">Edit</a> 
          </td>	
          </c:forEach>
          <tfoot>
@@ -38,13 +38,13 @@
             </tr>
          </tfoot>
       </table>
-      <form action="CheckOutCart" method = "POST">
+      <form action="checkout" method = "POST">
          <input type="Submit" value = "Check Out" >
       </form>
       <br>
       <c:out value = "${message}"/>
       <c:set var="message" value="" scope="session"/>
       <br>
-      <a href="home">Go back shopping</a> 
+      <a href="/example/user/home">Go back shopping</a> 
    </body>
 </html>

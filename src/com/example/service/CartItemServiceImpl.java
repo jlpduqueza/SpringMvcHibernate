@@ -59,4 +59,10 @@ public class CartItemServiceImpl implements CartItemService {
 		saveCartItem(cartItem);
 	}
 
+	@Override
+	@Transactional
+	public void checkout(User user) {
+		cartItemDao.checkout(user);
+	}
+
 }

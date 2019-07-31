@@ -1,39 +1,24 @@
 package com.example.controller;
 
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.example.domain.Login;
-import com.example.service.UserService;
+import com.example.service.InventoryItemService;
 
 @Controller
+@RequestMapping(value = "/user")
 public class UserController {
-    @Autowired
-    private UserService userService;
-    
-    @RequestMapping(value = "/", method = RequestMethod.GET)
-    public String loginForm(ModelMap model) {
-        model.put("login", new Login());
-        return "login";
-    }
 
-    @RequestMapping(value = "/logout")
-    public String logout(HttpSession session, ModelMap model) {
-        session.invalidate();
-        return "redirect:/";
+	@Autowired
+    private InventoryItemService inventoryItemService;
+	
+    @RequestMapping(value = "/home", method = { RequestMethod.GET, RequestMethod.POST })
+    public String viewInventoryList(ModelMap model) {
+    	model.put("inventoryList", inventoryItemService.getInventoryList());
+        return "user-home";
     }
     
-    @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public String userValidation(Login login, ModelMap model, HttpSession session) {
-        if (!userService.isValidUser(login)) {
-            return "redirect:/";
-        }
-        session.setAttribute("user", userService.findUserByLogin(login));
-        return "forward:/home";
-    }
 }

@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-  <c:out value = "${login.username}"/>
+  <c:out value = "hello! ${user.username}"/>
 <br>
 <br>
 	<a href="cart">CART</a>

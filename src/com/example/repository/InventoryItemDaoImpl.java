@@ -2,6 +2,8 @@ package com.example.repository;
 
 import java.util.List;
 
+import javax.persistence.Query;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +35,14 @@ public class InventoryItemDaoImpl implements InventoryItemDao {
         return currentSession.get(InventoryItem.class, id);
 	}
 
+	@Override
+	public InventoryItem getInventoryItemByProductId(int id) {
+		Session currentSession = sessionFactory.getCurrentSession();
+		Query query = currentSession.createQuery("From InventoryItem where product_id = :id");
+		query.setParameter("id", id);
+		return (InventoryItem) query.getSingleResult();
+	}
+	
 	@Override
 	public void deleteInventoryItem(int id) {
         Session session = sessionFactory.getCurrentSession();

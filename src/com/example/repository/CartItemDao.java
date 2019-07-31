@@ -11,5 +11,6 @@ public interface CartItemDao {
     public void saveCartItem(CartItem cartItem);
     public CartItem getCartItem(int id);
     public void deleteCartItem(int id);
+	public void checkout(User user);
 	
 }

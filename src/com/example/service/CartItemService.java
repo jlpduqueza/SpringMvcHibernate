@@ -15,5 +15,6 @@ public interface CartItemService {
     public void deleteCartItem(int id);
     public BigDecimal generateSubTotal(int quantity, BigDecimal price);
     public void addToCart(User user, Product product, int quantity);
+    public void checkout(User user);
 	
 }
